@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* index.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  /* Galaxy background layer */
+.starry-bg {
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -10;
+    overflow: hidden;
+  }
+  
+  /* Twinkling stars overlay */
+  .twinkling {
+    background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat top center;
+    animation: moveTwinkle 200s linear infinite;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -9;
+  }
+  
+  @keyframes moveTwinkle {
+    0% { background-position: 0 0; }
+    100% { background-position: -10000px 5000px; }
+  }
+  
+  
+  @keyframes galaxyMove {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+    .star {
+        position: absolute;
+        border-radius: 50%;
+        background: white;
+        opacity: 0.8;
+        animation: twinkle 1.5s infinite alternate;
+    }  
