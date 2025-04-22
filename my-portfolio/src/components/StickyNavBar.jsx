@@ -21,14 +21,14 @@ const StickyNavBar = () => {
 
     // Ref to track cursor position between frames
     let lastCursorPos = { x: 0, y: 0 };
-    const handleMouseMove = (e) => {
-    const { clientX, clientY } = e;
-    const hasMoved = clientX !== lastCursorPos.x || clientY !== lastCursorPos.y;
-    if (hasMoved) {
-        targetRef.current = { x: clientX, y: clientY };
-        lastCursorPos = { x: clientX, y: clientY };
-        lastMoveTime = Date.now();
-    }
+        const handleMouseMove = (e) => {
+        const { clientX, clientY } = e;
+        const hasMoved = clientX !== lastCursorPos.x || clientY !== lastCursorPos.y;
+        if (hasMoved) {
+            targetRef.current = { x: clientX, y: clientY };
+            lastCursorPos = { x: clientX, y: clientY };
+            lastMoveTime = Date.now();
+        }
     };
 
 
@@ -113,10 +113,11 @@ const StickyNavBar = () => {
     <>
       <div
         ref={rocketRef}
-        className="fixed z-50 pointer-events-none text-white text-xl transition-transform duration-75"
+        className="fixed z-0 pointer-events-none text-white text-xl transition-transform duration-75"
         style={{
-          transform: `translate(${rocketPosition.x - 10}px, ${rocketPosition.y - 48}px) rotate(${angle}deg)`
-        }}
+            transform: `translate(${rocketPosition.x - 10}px, ${rocketPosition.y - 48}px) rotate(${angle}deg)`,
+            zIndex: 0
+          }}          
       >
         <FaRocket className="text-white hover:text-pink-400 active:text-yellow-400 drop-shadow animate-bounce" />
       </div>
@@ -147,11 +148,12 @@ const StickyNavBar = () => {
           </li>
         </ul>
 
-        <div className="md:hidden flex items-center justify-between">
-          <button onClick={toggleMenu} className="text-white text-2xl">
-            {isOpen ? <HiX /> : <HiMenuAlt3 />}
-          </button>
+        <div className="md:hidden">
+            <button onClick={toggleMenu} className="text-white text-2xl">
+                {isOpen ? <HiX /> : <HiMenuAlt3 />}
+            </button>
         </div>
+
 
         {isOpen && (
           <ul className="absolute top-14 left-1/2 transform -translate-x-1/2 bg-black/80 backdrop-blur-lg px-6 py-4 rounded-xl shadow-lg text-center space-y-4 text-sm font-medium md:hidden">
